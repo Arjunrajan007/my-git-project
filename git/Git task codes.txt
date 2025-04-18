@@ -1,0 +1,72 @@
+1.using visual studio code creating a new directory
+
+ mkdir my-git-project
+cd my-git-project
+
+
+2.create some basic script files
+
+ echo "#!/bin/bash" > script1.sh
+echo "echo Hello from Script 1" >> script1.sh
+chmod +x script1.sh
+
+echo "#!/bin/bash" > script2.sh
+echo "echo Hello from Script 2" >> script2.sh
+chmod +x script2.sh
+
+3.Initialize a local Git repository
+
+git init
+git add .
+git commit -m "Initial commit with script files"
+
+4. connect local repo to github
+
+git remote add origin https://github.com/yourusername/my-git-project.git
+git branch -M main
+git push -u origin main
+
+5.git merge
+
+(Create and switch to a new branch)
+git checkout -b feature-branch
+
+( Modify script1.sh)
+echo "echo Feature update to script1" >> script1.sh
+
+git add script1.sh
+git commit -m "Feature: update script1 in feature-branch"
+
+( Switch back to main and merge)
+git checkout main
+git merge feature-branch
+
+6. git rebase
+
+git checkout -b rebase-branch
+
+(Change script2.sh)
+echo "echo Rebase update to script2" >> script2.sh
+
+git add script2.sh
+git commit -m "Rebase: update script2"
+
+( Rebase onto main)
+git checkout main
+git checkout -b temp-main
+git rebase rebase-branch
+
+
+7. git stash
+
+(Edit script1.sh)
+echo "echo Temporary change" >> script1.sh
+
+( Stash the change)
+git stash
+
+( (Optional) List stashes)
+git stash list
+
+( Apply the latest stash)
+git stash apply
